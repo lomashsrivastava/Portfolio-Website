@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lomash Srivastava | Full-Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/tilt.js@1.2.1/dest/tilt.jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00ea;
+            --accent: #00ff9d;
+            --dark: #0a0a1a;
+            --darker: #050511;
+            --glass: rgba(10, 15, 35, 0.6);
+            --light: #f0f0ff;
+            --magic: #fd79a8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Enhanced Custom cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--magic);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            filter: drop-shadow(0 0 5px var(--magic));
+            transition: transform 0.1s ease, background 0.3s ease;
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(253, 121, 168, 0.2);
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+        
+        .cursor-trail {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9997;
+        }
+        
+        .magic-sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            filter: drop-shadow(0 0 3px white);
+            animation: sparkle 1s forwards;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+        
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 17, 0.7);
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 400;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--magic);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--magic);
+            text-shadow: 0 0 10px var(--magic);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Section styling */
+        section {
+            min-height: 100vh;
+            padding: 7rem 5% 3rem;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        
+        /* Enhanced Hero section with Profile Photo */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: 15vh;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .profile-container {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 2rem;
+            position: relative;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            padding: 5px;
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: url('./images/WhatsApp\ Image\ 2025-06-25\ at\ 3.25.24\ PM.jpeg') center/cover;
+            border: 2px solid var(--darker);
+        }
+        
+        .profile-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            border-right-color: var(--accent);
+            border-bottom-color: var(--secondary);
+            animation: rotate 15s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+        
+        .hero-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 247, 255, 0.1);
+            border-radius: 50px;
+        }
+        
+        .contact-item:hover {
+            background: var(--magic);
+            color: var(--dark);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.5);
+        }
+        
+        /* Glassmorphism cards */
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(0, 247, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 247, 255, 0.2);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+        
+        /* Skills section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .skill-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-item {
+            background: rgba(0, 247, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-item:hover {
+            background: var(--magic);
+            color: var(--dark);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.3);
+        }
+        
+        /* Experience section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            width: calc(50% - 2rem);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            margin-right: auto;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+        }
+        
+        .timeline-content {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: var(--glass);
+            border: 1px solid rgba(0, 247, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 247, 255, 0.2);
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--magic);
+            box-shadow: 0 0 10px var(--magic);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -35px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -35px;
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .timeline-subtitle {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .timeline-list {
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .timeline-list li::before {
+            content: '▹';
+            position: absolute;
+            left: -1.5rem;
+            color: var(--magic);
+        }
+        
+        /* Projects section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: var(--glass);
+            border: 1px solid rgba(0, 247, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 247, 255, 0.2);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+        
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 247, 255, 0.3), rgba(0, 255, 157, 0.2));
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .project-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 247, 255, 0.1);
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background: var(--magic);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        /* Floating tech icons */
+        .floating-icons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 10;
+        }
+        
+        .tech-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass);
+            border: 1px solid rgba(0, 247, 255, 0.1);
+            font-size: 1.5rem;
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .tech-icon:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .tech-icon:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        .tech-icon:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.2) translateY(-10px);
+            box-shadow: 0 0 30px var(--primary);
+            color: var(--magic);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(5, 5, 17, 0.8);
+            border-top: 1px solid rgba(0, 247, 255, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-link {
+            font-size: 1.5rem;
+            color: var(--light);
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 247, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            background: var(--magic);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                margin: 0 0 3rem 0;
+            }
+            
+            .timeline-content::before {
+                left: 35px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--darker);
+                width: 70%;
+                height: calc(100vh - 70px);
+                padding: 2rem;
+                transition: all 0.4s ease;
+                border-left: 1px solid var(--primary);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .profile-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Enhanced Custom Cursor with Trail -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="cursor-trail"></div>
+    
+    <!-- Floating Tech Icons -->
+    <div class="floating-icons">
+        <div class="tech-icon"><i class="fab fa-react"></i></div>
+        <div class="tech-icon"><i class="fab fa-js"></i></div>
+        <div class="tech-icon"><i class="fab fa-python"></i></div>
+        <div class="tech-icon"><i class="fab fa-node-js"></i></div>
+    </div>
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Lomash Srivastava</div>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    
+    <!-- Hero Section with Profile Photo -->
+    <section id="hero">
+        <div class="hero-content">
+            <!-- Magical Profile Photo Container -->
+            <div class="profile-container" data-aos="fade-down" data-aos-duration="1000">
+                <div class="profile-photo"></div>
+                <div class="profile-ring"></div>
+            </div>
+            
+            <h1 class="hero-title" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200">Lomash Srivastava</h1>
+            <h2 class="hero-subtitle" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="300">Full-Stack Developer | Web Developer</h2>
+            <p class="hero-text" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                Full-Stack Developer with 1+ years of experience building secure, scalable web applications using React.js, Node.js, Python (Django/FastAPI), and PostgreSQL. Seeking full-time opportunities in backend, DevOps, or full-stack engineering.
+            </p>
+            <div class="contact-info" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>lomashgroups@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91-7355338964</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <span>github.com/lomashsrivastava</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>linkedin.com/in/lomashsrivastava</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="card" data-tilt data-aos="fade-up">
+            <h3>Professional Summary</h3>
+            <p>Full-Stack Developer with 1+ years of experience building secure, scalable web applications using React.js, Node.js, Python (Django/FastAPI), and PostgreSQL. Skilled in RESTful API design, CI/CD integration (Jenkins, GitHub Actions), and deploying to AWS/Azure environments. Experienced in Agile teams with test automation, version control, and cross-functional collaboration.</p>
+            
+            <h3 style="margin-top: 2rem;">Key Strengths</h3>
+            <ul style="list-style-type: none; padding-left: 1rem;">
+                <li style="margin-bottom: 0.8rem;"><i class="fas fa-chevron-right" style="color: var(--magic); margin-right: 0.5rem;"></i> API-driven backend development with Node.js, Django, and FastAPI</li>
+                <li style="margin-bottom: 0.8rem;"><i class="fas fa-chevron-right" style="color: var(--magic); margin-right: 0.5rem;"></i> Scalable database design using PostgreSQL, MongoDB, and MySQL</li>
+                <li style="margin-bottom: 0.8rem;"><i class="fas fa-chevron-right" style="color: var(--magic); margin-right: 0.5rem;"></i> Version control using Git/GitHub; Agile delivery using Jira</li>
+                <li style="margin-bottom: 0.8rem;"><i class="fas fa-chevron-right" style="color: var(--magic); margin-right: 0.5rem;"></i> Deployment experience on AWS (EC2, S3, Lambda), Docker, Azure</li>
+                <li><i class="fas fa-chevron-right" style="color: var(--magic); margin-right: 0.5rem;"></i> Strong knowledge of unit testing, integration testing, and debugging tools</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Frontend</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fab fa-react"></i> React.js</div>
+                    <div class="skill-item"><i class="fab fa-angular"></i> Angular</div>
+                    <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+                    <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                    <div class="skill-item"><i class="fas fa-wind"></i> Tailwind</div>
+                    <div class="skill-item"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+                    <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="skill-item"><i class="fab fa-js-square"></i> TypeScript</div>
+                    <div class="skill-item"><i class="fab fa-vuejs"></i> Vue.js</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Backend</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fab fa-python"></i> Python (Django, FastAPI)</div>
+                    <div class="skill-item"><i class="fab fa-node-js"></i> Node.js</div>
+                    <div class="skill-item"><i class="fas fa-server"></i> Express</div>
+                    <div class="skill-item"><i class="fab fa-microsoft"></i> C#</div>
+                    <div class="skill-item"><i class="fas fa-code"></i> .NET</div>
+                    <div class="skill-item"><i class="fab fa-php"></i> PHP</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="300">
+                <h3>Databases</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fas fa-database"></i> PostgreSQL</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> MySQL</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> MongoDB</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> SQL Server</div>
+                    <div class="skill-item"><i class="fas fa-fire"></i> Firebase</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="400">
+                <h3>Cloud/DevOps</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fab fa-aws"></i> AWS (EC2, Lambda, API Gateway)</div>
+                    <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
+                    <div class="skill-item"><i class="fab fa-jenkins"></i> Jenkins</div>
+                    <div class="skill-item"><i class="fab fa-github"></i> GitHub Actions</div>
+                    <div class="skill-item"><i class="fab fa-microsoft"></i> Azure DevOps</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="500">
+                <h3>Testing</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fas fa-vial"></i> PyTest</div>
+                    <div class="skill-item"><i class="fas fa-check-circle"></i> Selenium</div>
+                    <div class="skill-item"><i class="fas fa-play"></i> Playwright</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Jest</div>
+                    <div class="skill-item"><i class="fas fa-paper-plane"></i> Postman</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="600">
+                <h3>Others</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fas fa-code-branch"></i> REST APIs</div>
+                    <div class="skill-item"><i class="fas fa-lock"></i> OAuth2</div>
+                    <div class="skill-item"><i class="fas fa-memory"></i> Redis</div>
+                    <div class="skill-item"><i class="fas fa-exchange-alt"></i> RabbitMQ</div>
+                    <div class="skill-item"><i class="fas fa-chart-line"></i> Prometheus</div>
+                    <div class="skill-item"><i class="fas fa-file-alt"></i> Swagger</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <!-- Current Full-Stack Developer Intern Experience -->
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Full-Stack Developer Intern</h3>
+                    <p class="timeline-subtitle">QSpiders, Noida | Aug 2023 - Present</p>
+                    <ul class="timeline-list">
+                        <li>Developed full-stack features using React.js, Node.js, MongoDB, and Express.js</li>
+                        <li>Created reusable components and dynamic modules for CRM and business apps</li>
+                        <li>Built REST APIs with Django and FastAPI; integrated JWT authentication and Swagger docs</li>
+                        <li>Implemented CI/CD pipeline using GitHub Actions and Docker for deployment</li>
+                        <li>Used SQL optimization techniques to reduce query latency by 30%</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Previous Mechanical Engineering Experiences -->
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Mechanical Design Engineer</h3>
+                    <p class="timeline-subtitle">PrecisionTech Solutions, Noida | May 2022 - Jul 2023</p>
+                    <ul class="timeline-list">
+                        <li>Designed and optimized mechanical components using SolidWorks and AutoCAD</li>
+                        <li>Conducted stress analysis and simulations to improve product durability</li>
+                        <li>Collaborated with manufacturing teams to ensure design feasibility</li>
+                        <li>Reduced material costs by 15% through design optimization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Production Engineer</h3>
+                    <p class="timeline-subtitle">MechWorks Industries, Ghaziabad | Nov 2021 - Apr 2022</p>
+                    <ul class="timeline-list">
+                        <li>Supervised production line operations and ensured quality control standards</li>
+                        <li>Implemented lean manufacturing techniques to improve efficiency by 20%</li>
+                        <li>Troubleshot mechanical issues and reduced downtime by 30%</li>
+                        <li>Coordinated with suppliers for raw material procurement</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Maintenance Engineer</h3>
+                    <p class="timeline-subtitle">PowerMech Solutions, Delhi | Jun 2021 - Oct 2021</p>
+                    <ul class="timeline-list">
+                        <li>Performed preventive maintenance on industrial machinery and equipment</li>
+                        <li>Developed maintenance schedules that increased equipment uptime by 25%</li>
+                        <li>Diagnosed and repaired mechanical failures in hydraulic and pneumatic systems</li>
+                        <li>Maintained detailed records of maintenance activities and parts inventory</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Quality Control Engineer</h3>
+                    <p class="timeline-subtitle">Elite Engineering Works, Faridabad | Jan 2021 - May 2021</p>
+                    <ul class="timeline-list">
+                        <li>Implemented quality control procedures for mechanical components</li>
+                        <li>Conducted dimensional inspections using CMM and other measuring instruments</li>
+                        <li>Reduced defect rate by 18% through process improvements</li>
+                        <li>Prepared quality reports and documentation for client deliverables</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Junior Mechanical Engineer</h3>
+                    <p class="timeline-subtitle">TechMech Systems, Noida | Sep 2020 - Dec 2020</p>
+                    <ul class="timeline-list">
+                        <li>Assisted senior engineers in design and development projects</li>
+                        <li>Created technical drawings and documentation for mechanical assemblies</li>
+                        <li>Participated in prototype testing and validation processes</li>
+                        <li>Supported manufacturing team with technical guidance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Mechanical Engineering Intern</h3>
+                    <p class="timeline-subtitle">AutoTech Components, Gurugram | Aug 2019 - Aug 2020</p>
+                    <ul class="timeline-list">
+                        <li>Gained hands-on experience in mechanical design and manufacturing processes</li>
+                        <li>Assisted in CAD modeling and simulation of automotive components</li>
+                        <li>Learned about material selection and manufacturing techniques</li>
+                        <li>Participated in cross-functional team meetings and project reviews</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+<section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+        <!-- Original Projects -->
+
+        <!-- Additional 27 Projects -->
+        <div class="project-card" data-tilt data-aos="fade-up">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Office Attendance System</h3>
+                <p class="project-description">Desktop facial recognition app using Python, Tkinter, OpenCV; stores data in JSON and renders analytics.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1368&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Railway Reservation System</h3>
+                <p class="project-description">Secure GUI with QR-based payment simulation and PNR status tracking using Python and ttkbootstrap.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Survey Data Entry App</h3>
+                <p class="project-description">Form builder that supports multiple input types, generates CSV output, and visualizes with Matplotlib.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">E-commerce Analytics Dashboard</h3>
+                <p class="project-description">Interactive dashboard with React and D3.js that visualizes sales trends, customer behavior, and inventory.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">AI Recipe Generator</h3>
+                <p class="project-description">NLP-powered web app that suggests recipes based on available ingredients using Python and Flask.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Blockchain Voting System</h3>
+                <p class="project-description">Decentralized voting application built with Ethereum smart contracts and React frontend.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Fitness Tracker Mobile App</h3>
+                <p class="project-description">Cross-platform app with React Native that tracks workouts, nutrition, and progress with charts.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Smart Home Automation</h3>
+                <p class="project-description">IoT system with Raspberry Pi controlling lights, temperature, and security with voice commands.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Language Learning Chatbot</h3>
+                <p class="project-description">AI-powered chatbot that helps users practice foreign languages through conversation.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 10 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Augmented Reality Museum Guide</h3>
+                <p class="project-description">Mobile app that uses AR to provide interactive information about museum exhibits.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 11 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1468259215672-a8038b8faf5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Stock Market Predictor</h3>
+                <p class="project-description">Machine learning model that analyzes historical data to predict stock trends with 85% accuracy.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 12 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Hospital Management System</h3>
+                <p class="project-description">Full-stack application for patient records, appointments, and inventory management.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 13 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Social Media Sentiment Analysis</h3>
+                <p class="project-description">Tool that analyzes Twitter data to determine public sentiment about specific topics using NLP.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 14 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">3D Portfolio Website</h3>
+                <p class="project-description">Interactive portfolio with Three.js animations and custom shaders for immersive experience.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 15 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1542903660-eedba2cda473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Automated Testing Framework</h3>
+                <p class="project-description">Custom testing framework for web applications with Selenium and Jest integration.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 16 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Virtual Reality Classroom</h3>
+                <p class="project-description">Educational VR environment for remote learning with interactive 3D models and whiteboard.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 17 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Code Collaboration Platform</h3>
+                <p class="project-description">Real-time collaborative coding environment with syntax highlighting and video chat.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 18 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1524&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Parking Space Detection</h3>
+                <p class="project-description">Computer vision system that identifies available parking spots using YOLO object detection.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 19 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1511&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Personal Finance Dashboard</h3>
+                <p class="project-description">Budget tracking application with expense categorization and financial goal setting.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 20 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1543092587-d8b8feaf3626?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">AI Chess Engine</h3>
+                <p class="project-description">Chess AI that uses minimax algorithm with alpha-beta pruning to play at expert level.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 21 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1605722243979-fe0be8158232?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Weather Prediction Model</h3>
+                <p class="project-description">LSTM neural network that forecasts weather patterns based on historical data.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 22 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Music Recommendation System</h3>
+                <p class="project-description">Content-based filtering algorithm that suggests songs based on listening history and preferences.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 23 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Document Scanner App</h3>
+                <p class="project-description">Mobile application that uses OpenCV to scan, enhance, and OCR documents with 95% accuracy.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 24 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Task Automation Framework</h3>
+                <p class="project-description">Python library for automating repetitive tasks across multiple applications and platforms.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 25 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Neural Style Transfer</h3>
+                <p class="project-description">Deep learning application that applies artistic styles to photos using convolutional neural networks.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 26 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Cloud File Storage</h3>
+                <p class="project-description">Secure file storage service with end-to-end encryption and collaborative features.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 27 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Gesture Control System</h3>
+                <p class="project-description">Computer vision application that interprets hand gestures to control devices without touch.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+</section>
+    
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education & Certifications</h2>
+        <div class="card" data-tilt data-aos="fade-up">
+            <h3>Education</h3>
+            <div style="margin-bottom: 2rem;">
+                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">B.Tech - Mechanical Engineering</h4>
+                <p>Uttar Pradesh Technical University | Oct 2022</p>
+            </div>
+            <div>
+                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Diploma - Mechanical Engineering</h4>
+                <p>Board of Technical Education Uttar Pradesh | Jul 2019</p>
+            </div>
+        </div>
+        
+        <div class="card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <h3>Certifications</h3>
+            <div>
+                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Python Full Stack Web Development</h4>
+                <p>QSpiders, Noida | Aug 2023 - Present</p>
+                <p style="margin-top: 0.8rem;">Covered Python, Django, React.js, Node.js, MySQL, MongoDB, Git, RESTful APIs, and CI/CD pipelines</p>
+            </div>
+        </div>
+        
+        <div class="card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <h3>Job Preferences</h3>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 1rem;"><i class="fas fa-briefcase" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Employment Type:</strong> Full-time roles only</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Location:</strong> Remote or on-site (India-wide)</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-code" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Preferred Roles:</strong> Frontend Developer, UI/UX Developer, Web Developer, Backend Developer, DevOps Engineer, Full-Stack Developer</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-calendar-check" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Availability:</strong> Immediate</li>
+                <li><i class="fas fa-globe" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Relocation:</strong> Open to relocation within India or fully remote positions</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="mailto:lomashgroups@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+917355338964" class="social-link"><i class="fas fa-phone"></i></a>
+            <a href="https://github.com/lomashsrivastava" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/lomashsrivastava" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2025 Lomash Srivastava. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Initialize Tilt.js
+        if ($('.project-card').length) {
+            $('.project-card').tilt({
+                maxTilt: 5,
+                glare: true,
+                maxGlare: 0.2,
+                perspective: 1000
+            });
+        }
+        
+        // Enhanced Custom Cursor with Magic Effects
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        const cursorTrail = document.querySelector('.cursor-trail');
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            
+            cursorFollower.style.left = mouseX + 'px';
+            cursorFollower.style.top = mouseY + 'px';
+            
+            // Create star trail randomly
+            if (Math.random() > 0.7) {
+                createSparkle(mouseX, mouseY);
+            }
+        });
+        
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('magic-sparkle');
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            cursorTrail.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        }
+        
+        // Cursor hover effect with magic sparkles
+        document.querySelectorAll('a, button, .project-card, .skill-item, .tech-icon, .contact-item, .social-link').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+                cursor.style.background = 'white';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorFollower.style.background = 'rgba(253, 121, 168, 0.5)';
+                
+                // Create magic effect around the element
+                const rect = element.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        createSparkle(
+                            centerX + (Math.random() - 0.5) * rect.width,
+                            centerY + (Math.random() - 0.5) * rect.height
+                        );
+                    }, i * 100);
+                }
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'var(--magic)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.5)';
+                cursorFollower.style.background = 'rgba(253, 121, 168, 0.2)';
+            });
+        });
+        
+        // Particles.js configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00f7ff" },
+                shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00f7ff",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html> 
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Frontend</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fab fa-react"></i> React.js</div>
+                    <div class="skill-item"><i class="fab fa-angular"></i> Angular</div>
+                    <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+                    <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                    <div class="skill-item"><i class="fas fa-wind"></i> Tailwind</div>
+                    <div class="skill-item"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+                    <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="skill-item"><i class="fab fa-js-square"></i> TypeScript</div>
+                    <div class="skill-item"><i class="fab fa-vuejs"></i> Vue.js</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Backend</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fab fa-python"></i> Python (Django, FastAPI)</div>
+                    <div class="skill-item"><i class="fab fa-node-js"></i> Node.js</div>
+                    <div class="skill-item"><i class="fas fa-server"></i> Express</div>
+                    <div class="skill-item"><i class="fab fa-microsoft"></i> C#</div>
+                    <div class="skill-item"><i class="fas fa-code"></i> .NET</div>
+                    <div class="skill-item"><i class="fab fa-php"></i> PHP</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="300">
+                <h3>Databases</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fas fa-database"></i> PostgreSQL</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> MySQL</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> MongoDB</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> SQL Server</div>
+                    <div class="skill-item"><i class="fas fa-fire"></i> Firebase</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="400">
+                <h3>Cloud/DevOps</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fab fa-aws"></i> AWS (EC2, Lambda, API Gateway)</div>
+                    <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
+                    <div class="skill-item"><i class="fab fa-jenkins"></i> Jenkins</div>
+                    <div class="skill-item"><i class="fab fa-github"></i> GitHub Actions</div>
+                    <div class="skill-item"><i class="fab fa-microsoft"></i> Azure DevOps</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="500">
+                <h3>Testing</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fas fa-vial"></i> PyTest</div>
+                    <div class="skill-item"><i class="fas fa-check-circle"></i> Selenium</div>
+                    <div class="skill-item"><i class="fas fa-play"></i> Playwright</div>
+                    <div class="skill-item"><i class="fas fa-check"></i> Jest</div>
+                    <div class="skill-item"><i class="fas fa-paper-plane"></i> Postman</div>
+                </div>
+            </div>
+            
+            <div class="skill-category card" data-aos="fade-up" data-aos-delay="600">
+                <h3>Others</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fas fa-code-branch"></i> REST APIs</div>
+                    <div class="skill-item"><i class="fas fa-lock"></i> OAuth2</div>
+                    <div class="skill-item"><i class="fas fa-memory"></i> Redis</div>
+                    <div class="skill-item"><i class="fas fa-exchange-alt"></i> RabbitMQ</div>
+                    <div class="skill-item"><i class="fas fa-chart-line"></i> Prometheus</div>
+                    <div class="skill-item"><i class="fas fa-file-alt"></i> Swagger</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <!-- Current Full-Stack Developer Intern Experience -->
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Full-Stack Developer Intern</h3>
+                    <p class="timeline-subtitle">QSpiders, Noida | Aug 2023 - Present</p>
+                    <ul class="timeline-list">
+                        <li>Developed full-stack features using React.js, Node.js, MongoDB, and Express.js</li>
+                        <li>Created reusable components and dynamic modules for CRM and business apps</li>
+                        <li>Built REST APIs with Django and FastAPI; integrated JWT authentication and Swagger docs</li>
+                        <li>Implemented CI/CD pipeline using GitHub Actions and Docker for deployment</li>
+                        <li>Used SQL optimization techniques to reduce query latency by 30%</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Previous Mechanical Engineering Experiences -->
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Mechanical Design Engineer</h3>
+                    <p class="timeline-subtitle">PrecisionTech Solutions, Noida | May 2022 - Jul 2023</p>
+                    <ul class="timeline-list">
+                        <li>Designed and optimized mechanical components using SolidWorks and AutoCAD</li>
+                        <li>Conducted stress analysis and simulations to improve product durability</li>
+                        <li>Collaborated with manufacturing teams to ensure design feasibility</li>
+                        <li>Reduced material costs by 15% through design optimization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Production Engineer</h3>
+                    <p class="timeline-subtitle">MechWorks Industries, Ghaziabad | Nov 2021 - Apr 2022</p>
+                    <ul class="timeline-list">
+                        <li>Supervised production line operations and ensured quality control standards</li>
+                        <li>Implemented lean manufacturing techniques to improve efficiency by 20%</li>
+                        <li>Troubleshot mechanical issues and reduced downtime by 30%</li>
+                        <li>Coordinated with suppliers for raw material procurement</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Maintenance Engineer</h3>
+                    <p class="timeline-subtitle">PowerMech Solutions, Delhi | Jun 2021 - Oct 2021</p>
+                    <ul class="timeline-list">
+                        <li>Performed preventive maintenance on industrial machinery and equipment</li>
+                        <li>Developed maintenance schedules that increased equipment uptime by 25%</li>
+                        <li>Diagnosed and repaired mechanical failures in hydraulic and pneumatic systems</li>
+                        <li>Maintained detailed records of maintenance activities and parts inventory</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Quality Control Engineer</h3>
+                    <p class="timeline-subtitle">Elite Engineering Works, Faridabad | Jan 2021 - May 2021</p>
+                    <ul class="timeline-list">
+                        <li>Implemented quality control procedures for mechanical components</li>
+                        <li>Conducted dimensional inspections using CMM and other measuring instruments</li>
+                        <li>Reduced defect rate by 18% through process improvements</li>
+                        <li>Prepared quality reports and documentation for client deliverables</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Junior Mechanical Engineer</h3>
+                    <p class="timeline-subtitle">TechMech Systems, Noida | Sep 2020 - Dec 2020</p>
+                    <ul class="timeline-list">
+                        <li>Assisted senior engineers in design and development projects</li>
+                        <li>Created technical drawings and documentation for mechanical assemblies</li>
+                        <li>Participated in prototype testing and validation processes</li>
+                        <li>Supported manufacturing team with technical guidance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Mechanical Engineering Intern</h3>
+                    <p class="timeline-subtitle">AutoTech Components, Gurugram | Aug 2019 - Aug 2020</p>
+                    <ul class="timeline-list">
+                        <li>Gained hands-on experience in mechanical design and manufacturing processes</li>
+                        <li>Assisted in CAD modeling and simulation of automotive components</li>
+                        <li>Learned about material selection and manufacturing techniques</li>
+                        <li>Participated in cross-functional team meetings and project reviews</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+<section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+        <!-- Original Projects -->
+        <div class="project-card" data-tilt data-aos="fade-up">
+            <div class="project-image"></div>
+            <div class="project-content">
+                <h3 class="project-title">Office Attendance System</h3>
+                <p class="project-description">Desktop facial recognition app using Python, Tkinter, OpenCV; stores data in JSON and renders analytics.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image"></div>
+            <div class="project-content">
+                <h3 class="project-title">Railway Reservation System</h3>
+                <p class="project-description">Secure GUI with QR-based payment simulation and PNR status tracking using Python and ttkbootstrap.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image"></div>
+            <div class="project-content">
+                <h3 class="project-title">Survey Data Entry App</h3>
+                <p class="project-description">Form builder that supports multiple input types, generates CSV output, and visualizes with Matplotlib.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional 27 Projects -->
+        <div class="project-card" data-tilt data-aos="fade-up">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Office Attendance System</h3>
+                <p class="project-description">Desktop facial recognition app using Python, Tkinter, OpenCV; stores data in JSON and renders analytics.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1368&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Railway Reservation System</h3>
+                <p class="project-description">Secure GUI with QR-based payment simulation and PNR status tracking using Python and ttkbootstrap.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Survey Data Entry App</h3>
+                <p class="project-description">Form builder that supports multiple input types, generates CSV output, and visualizes with Matplotlib.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">E-commerce Analytics Dashboard</h3>
+                <p class="project-description">Interactive dashboard with React and D3.js that visualizes sales trends, customer behavior, and inventory.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">AI Recipe Generator</h3>
+                <p class="project-description">NLP-powered web app that suggests recipes based on available ingredients using Python and Flask.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Blockchain Voting System</h3>
+                <p class="project-description">Decentralized voting application built with Ethereum smart contracts and React frontend.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Fitness Tracker Mobile App</h3>
+                <p class="project-description">Cross-platform app with React Native that tracks workouts, nutrition, and progress with charts.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Smart Home Automation</h3>
+                <p class="project-description">IoT system with Raspberry Pi controlling lights, temperature, and security with voice commands.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Language Learning Chatbot</h3>
+                <p class="project-description">AI-powered chatbot that helps users practice foreign languages through conversation.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 10 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Augmented Reality Museum Guide</h3>
+                <p class="project-description">Mobile app that uses AR to provide interactive information about museum exhibits.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 11 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1468259215672-a8038b8faf5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Stock Market Predictor</h3>
+                <p class="project-description">Machine learning model that analyzes historical data to predict stock trends with 85% accuracy.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 12 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Hospital Management System</h3>
+                <p class="project-description">Full-stack application for patient records, appointments, and inventory management.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 13 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Social Media Sentiment Analysis</h3>
+                <p class="project-description">Tool that analyzes Twitter data to determine public sentiment about specific topics using NLP.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 14 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">3D Portfolio Website</h3>
+                <p class="project-description">Interactive portfolio with Three.js animations and custom shaders for immersive experience.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 15 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1542903660-eedba2cda473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Automated Testing Framework</h3>
+                <p class="project-description">Custom testing framework for web applications with Selenium and Jest integration.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 16 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Virtual Reality Classroom</h3>
+                <p class="project-description">Educational VR environment for remote learning with interactive 3D models and whiteboard.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 17 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Code Collaboration Platform</h3>
+                <p class="project-description">Real-time collaborative coding environment with syntax highlighting and video chat.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 18 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1524&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Parking Space Detection</h3>
+                <p class="project-description">Computer vision system that identifies available parking spots using YOLO object detection.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 19 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1511&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Personal Finance Dashboard</h3>
+                <p class="project-description">Budget tracking application with expense categorization and financial goal setting.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 20 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1543092587-d8b8feaf3626?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">AI Chess Engine</h3>
+                <p class="project-description">Chess AI that uses minimax algorithm with alpha-beta pruning to play at expert level.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 21 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1605722243979-fe0be8158232?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Weather Prediction Model</h3>
+                <p class="project-description">LSTM neural network that forecasts weather patterns based on historical data.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 22 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Music Recommendation System</h3>
+                <p class="project-description">Content-based filtering algorithm that suggests songs based on listening history and preferences.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 23 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Document Scanner App</h3>
+                <p class="project-description">Mobile application that uses OpenCV to scan, enhance, and OCR documents with 95% accuracy.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 24 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Task Automation Framework</h3>
+                <p class="project-description">Python library for automating repetitive tasks across multiple applications and platforms.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 25 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Neural Style Transfer</h3>
+                <p class="project-description">Deep learning application that applies artistic styles to photos using convolutional neural networks.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 26 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Cloud File Storage</h3>
+                <p class="project-description">Secure file storage service with end-to-end encryption and collaborative features.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 27 -->
+        <div class="project-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div class="project-content">
+                <h3 class="project-title">Gesture Control System</h3>
+                <p class="project-description">Computer vision application that interprets hand gestures to control devices without touch.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Live Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+</section>
+    
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education & Certifications</h2>
+        <div class="card" data-tilt data-aos="fade-up">
+            <h3>Education</h3>
+            <div style="margin-bottom: 2rem;">
+                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">B.Tech - Mechanical Engineering</h4>
+                <p>Uttar Pradesh Technical University | Oct 2022</p>
+            </div>
+            <div>
+                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Diploma - Mechanical Engineering</h4>
+                <p>Board of Technical Education Uttar Pradesh | Jul 2019</p>
+            </div>
+        </div>
+        
+        <div class="card" data-tilt data-aos="fade-up" data-aos-delay="200">
+            <h3>Certifications</h3>
+            <div>
+                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Python Full Stack Web Development</h4>
+                <p>QSpiders, Noida | Aug 2023 - Present</p>
+                <p style="margin-top: 0.8rem;">Covered Python, Django, React.js, Node.js, MySQL, MongoDB, Git, RESTful APIs, and CI/CD pipelines</p>
+            </div>
+        </div>
+        
+        <div class="card" data-tilt data-aos="fade-up" data-aos-delay="400">
+            <h3>Job Preferences</h3>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 1rem;"><i class="fas fa-briefcase" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Employment Type:</strong> Full-time roles only</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Location:</strong> Remote or on-site (India-wide)</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-code" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Preferred Roles:</strong> Frontend Developer, UI/UX Developer, Web Developer, Backend Developer, DevOps Engineer, Full-Stack Developer</li>
+                <li style="margin-bottom: 1rem;"><i class="fas fa-calendar-check" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Availability:</strong> Immediate</li>
+                <li><i class="fas fa-globe" style="color: var(--magic); margin-right: 0.8rem;"></i> <strong>Relocation:</strong> Open to relocation within India or fully remote positions</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="mailto:lomashgroups@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+917355338964" class="social-link"><i class="fas fa-phone"></i></a>
+            <a href="https://github.com/lomashsrivastava" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/lomashsrivastava" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2025 Lomash Srivastava. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Initialize Tilt.js
+        if ($('.project-card').length) {
+            $('.project-card').tilt({
+                maxTilt: 5,
+                glare: true,
+                maxGlare: 0.2,
+                perspective: 1000
+            });
+        }
+        
+        // Enhanced Custom Cursor with Magic Effects
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        const cursorTrail = document.querySelector('.cursor-trail');
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            
+            cursorFollower.style.left = mouseX + 'px';
+            cursorFollower.style.top = mouseY + 'px';
+            
+            // Create star trail randomly
+            if (Math.random() > 0.7) {
+                createSparkle(mouseX, mouseY);
+            }
+        });
+        
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('magic-sparkle');
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            cursorTrail.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        }
+        
+        // Cursor hover effect with magic sparkles
+        document.querySelectorAll('a, button, .project-card, .skill-item, .tech-icon, .contact-item, .social-link').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+                cursor.style.background = 'white';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorFollower.style.background = 'rgba(253, 121, 168, 0.5)';
+                
+                // Create magic effect around the element
+                const rect = element.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        createSparkle(
+                            centerX + (Math.random() - 0.5) * rect.width,
+                            centerY + (Math.random() - 0.5) * rect.height
+                        );
+                    }, i * 100);
+                }
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'var(--magic)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.5)';
+                cursorFollower.style.background = 'rgba(253, 121, 168, 0.2)';
+            });
+        });
+        
+        // Particles.js configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00f7ff" },
+                shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00f7ff",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
